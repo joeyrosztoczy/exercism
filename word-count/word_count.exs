@@ -7,23 +7,23 @@ defmodule Words do
 
   @spec count(String.t) :: map()
   def count(sentence) do
-  	sentence
-  	|> String.downcase
-  	|> strip_punctuation
-  	|> get_unique_word_count
-  	|> Enum.into(%{})
+    sentence
+    |> String.downcase
+    |> strip_punctuation
+    |> get_unique_word_count
+    |> Enum.into(%{})
   end
 
   @spec get_unique_word_count(List.t) :: list()
   defp get_unique_word_count(list) do
-  	list
-  	|> Enum.group_by(&(&1))
-  	|> Enum.map(fn ({k, v}) -> {k, length(v)} end)
+    list
+    |> Enum.group_by(&(&1))
+    |> Enum.map(fn ({k, v}) -> {k, length(v)} end)
   end
 
   @spec strip_punctuation(String.t) :: list()
   defp strip_punctuation(string) do
-	  String.split(string, ~r/[^\p{L}0-9'\-]/u, trim: true)
+    String.split(string, ~r/[^\p{L}0-9'\-]/u, trim: true)
   end
 
 end
